@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct fcfs
+{
+	int pid;
+	int wtime;
+	int btime;
+	int ttime;
+}
+p[10];
+int main()
+{
+	int i,n;
+	int totttime=0,totwtime=0;
+	printf("fcfs scheduling");
+	printf("enter the no of processors");
+	scanf("%d",&n);
+	for(i=0;i<=n;i++)
+	{
+		p[i].pid=1;
+		printf("enter burst time");
+		scanf("%d",&p[i].btime);
+	}
+p[0].wtime=0;
+	p[0].ttime=p[0].btime;
+	totttime=totttime+p[i].ttime;
+	for(i=0;i<=n;i++)
+	{
+		p[i].wtime=p[i-1].wtime-p[i-1].btime;
+		p[i].ttime=p[i].wtime+p[i].btime;
+		totttime=totttime+p[i].ttime;
+		totwtime=totwtime+p[i].wtime;
+		
+	}
+	printf("total waiting time:%d",totwtime);
+	printf("average waiting time:%d",totwtime/n);
+	printf("total turn around time:%d",totttime);
+	printf("average turn around time:%d",totttime/n);
+	return 0;
+}
